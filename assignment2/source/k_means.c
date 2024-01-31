@@ -56,41 +56,41 @@ void k_means(struct point p[MAX_POINTS],
    */
   // do the iterations
   for(b = 0; b < iters; b++) {
-	// loop through the points
-	for(a = 0; a < m; a++) {
-	  min_dist = INFINITY;
-	  // loop through the centers
-	  for(j = 0; j < k; j++) {
-		// get the distance
-		distance = pow((p[a].x - u[j].x), 2) + pow((p[a].y - u[j].y), 2);
-		// check if smaller than the prev
-		if(distance < min_dist) {
-		  c[a] = j;
-		  min_dist = distance;
-		}
-	  }
-	}
-	for(j = 0; j < k; j++) {
-	  // get the sums
-	  count = 0;
-	  x_sum = 0;
-	  y_sum = 0;
-	  for(a = 0; a < m; a++) {
-		if(c[a] == j) {
-		  count++;
-		  x_sum += p[a].x;
-		  y_sum += p[a].y;
-		}
-	  }
-	  if(count > 0) {
-	    // get the new center
-	    u[j].x = x_sum/count;
-	    u[j].y = y_sum/count;
-	  } else {
-		// reset the lonely boi
-		u[j] = random_center();
-	  }
-	}
-}
+    // loop through the points
+    for(a = 0; a < m; a++) {
+      min_dist = INFINITY;
+      // loop through the centers
+      for(j = 0; j < k; j++) {
+        // get the distance
+        distance = pow((p[a].x - u[j].x), 2) + pow((p[a].y - u[j].y), 2);
+        // check if smaller than the prev
+        if(distance < min_dist) {
+          c[a] = j;
+          min_dist = distance;
+        }
+      }
+    }
+    for(j = 0; j < k; j++) {
+      // get the sums
+      count = 0;
+      x_sum = 0;
+      y_sum = 0;
+      for(a = 0; a < m; a++) {
+        if(c[a] == j) {
+          count++;
+          x_sum += p[a].x;
+          y_sum += p[a].y;
+        }
+      }
+      if(count > 0) {
+        // get the new center
+        u[j].x = x_sum/count;
+        u[j].y = y_sum/count;
+      } else {
+        // reset the lonely boi
+        u[j] = random_center();
+      }
+    }
+  }
   return;
 }
